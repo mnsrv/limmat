@@ -5,8 +5,7 @@ ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
-# gem 'sqlite3'
-gem 'mysql2'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
 # Reduces boot times through caching; required in config/boot.rb
