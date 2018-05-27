@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  namespace :v1 do
+  namespace :v1, defaults: { format: :json } do
     resources :transactions
     resource :sessions, only: [:create, :destroy]
   end

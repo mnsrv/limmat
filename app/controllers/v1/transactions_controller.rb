@@ -2,14 +2,14 @@ class V1::TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
 
-    render json: @transactions, status: :ok
+    render :index, status: :ok
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
 
     @transaction.save
-    render json: @transaction, status: :created
+    render :create, status: :created
   end
 
   def destroy
