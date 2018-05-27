@@ -1,19 +1,19 @@
 class V1::TransactionsController < ApplicationController
   def index
-    @transactions = Transaction.all
+    @transactions = current_user.transactions
 
     render :index, status: :ok
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = current_user.transactions.build(transaction_params)
 
     @transaction.save
     render :create, status: :created
   end
 
   def destroy
-    @transaction = Transaction.where(id: params[:id]).first()
+    @transaction = current_user.transactions.where(id: params[:id]).first()
     if @transaction.destroy
       head(:ok)
     else
