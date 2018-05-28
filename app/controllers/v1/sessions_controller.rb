@@ -25,5 +25,6 @@ class V1::SessionsController < ApplicationController
 
   def nilify_token
     current_user && current_user.authentication_token = nil
+    true
   end
 end
