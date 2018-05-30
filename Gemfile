@@ -9,6 +9,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
 gem 'jbuilder', '~> 2.5'
+gem 'friendly_id', '~> 5.1.0'
 
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
