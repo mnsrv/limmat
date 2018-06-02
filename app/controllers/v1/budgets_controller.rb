@@ -4,10 +4,10 @@ module V1
   # Manages the Budget model
   class BudgetsController < ApplicationController
     def create
-      @budget = current_user.budgets.build(budget_params)
+      budget = current_user.budgets.build(budget_params)
 
-      if @budget.save
-        render :create, status: :created
+      if budget.save
+        render :create, status: :created, locals: { budget: budget }
       else
         head(:unprocessable_entity)
       end
@@ -26,7 +26,7 @@ module V1
     private
 
     def budget_params
-      params.require(:budget).permit(:name, :on_budget, :closed, :balance)
+      params.require(:budget).permit(:name, :currency)
     end
   end
 end
