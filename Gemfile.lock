@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stympy/faker
+  revision: 8848982dc9a0cb60c337fab7fa2bbb9ba25b2826
+  specs:
+    faker (1.8.7)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,8 +64,6 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.7.1)
-    faker (1.8.7)
-      i18n (>= 0.7)
     ffi (1.9.23)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -162,7 +167,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   devise
-  faker
+  faker!
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
