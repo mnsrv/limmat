@@ -1,0 +1,10 @@
+usd_budget:
+  name: 'Usd Budget'
+  slug: 'usd-budget'
+  owner: one
+  currency: 'USD'
+
+two:
+  name: <%= Faker::Company.name %>
+  slug: 'another-one'
+  owner: two

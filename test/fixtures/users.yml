@@ -6,7 +6,10 @@
 #
 one:
   email: 'test_user@mansurov.me'
-  authentication_token: 'test1234token'
+  authentication_token: <%= Faker::Types.rb_string %>
   confirmed_at: <%= Time.now %>
-# column: value
-#
+
+two:
+  email: <%= Faker::Internet.email %>
+  authentication_token: <%= Faker::Types.rb_string %>
+  confirmed_at: <%= Time.now %>

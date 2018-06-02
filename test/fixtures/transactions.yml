@@ -1,0 +1,11 @@
+one:
+  date: <%= Faker::Date.backward(14) %>
+  amount: <%= Faker::Number.decimal(2) %>
+  memo: <%= Faker::Company.name %>
+  account: one
+
+two:
+  date: <%= Faker::Date.backward(14) %>
+  amount: <%= Faker::Number.decimal(2) %>
+  memo: <%= Faker::Company.name %>
+  account: two

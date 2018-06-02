@@ -1,0 +1,7 @@
+one:
+  name: <%= Faker::Company.name %>
+  budget: usd_budget
+
+two:
+  name: <%= Faker::Company.name %>
+  budget: rub_budget
