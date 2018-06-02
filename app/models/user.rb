@@ -11,5 +11,4 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :budgets, foreign_key: :owner_id
-  has_many :transactions
 end

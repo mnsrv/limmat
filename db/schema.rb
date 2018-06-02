@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_224839) do
+ActiveRecord::Schema.define(version: 2018_06_02_183751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.boolean "closed"
+    t.boolean "on_budget"
+    t.decimal "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "budget_id"
+    t.index ["budget_id"], name: "index_accounts_on_budget_id"
+    t.index ["slug"], name: "index_accounts_on_slug", unique: true
+  end
 
   create_table "budgets", force: :cascade do |t|
     t.string "name"
@@ -32,8 +45,8 @@ ActiveRecord::Schema.define(version: 2018_05_31_224839) do
     t.string "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_transactions_on_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_224839) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "budgets"
   add_foreign_key "budgets", "users", column: "owner_id"
-  add_foreign_key "transactions", "users"
+  add_foreign_key "transactions", "accounts"
 end

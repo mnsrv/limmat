@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slug: MyString
+  closed: false
+  on_budget: false
+  balance: 9.99
+
+two:
+  name: MyString
+  slug: MyString
+  closed: false
+  on_budget: false
+  balance: 9.99
