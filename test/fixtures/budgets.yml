@@ -2,12 +2,8 @@
 
 one:
   name: MyString
-  on_budget: false
-  closed: false
-  balance: 9.99
+  currency: MyString
 
 two:
   name: MyString
-  on_budget: false
-  closed: false
-  balance: 9.99
+  currency: MyString

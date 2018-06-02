@@ -17,9 +17,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_224839) do
 
   create_table "budgets", force: :cascade do |t|
     t.string "name"
-    t.boolean "on_budget"
-    t.boolean "closed"
-    t.decimal "balance"
+    t.string "currency"
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
