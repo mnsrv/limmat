@@ -10,16 +10,28 @@ module V1
     end
 
     def create
-      budget = current_budget.budget.friendly.find(params[:budget_id])
-      @transaction = budget.transactions.build(transaction_params)
+      @transaction = current_account.transactions.build(transaction_params)
 
-      @transaction.save
-      render :create, status: :created
+      if @transaction.save
+        render :create, status: :created
+      else
+        head(:unprocessable_entity)
+      end
+    end
+
+    def update
+      @transaction = current_account.transactions.find(params[:id])
+
+      if @transaction.update(transaction_params)
+        render :update
+      else
+        head(:unprocessable_entity)
+      end
     end
 
     def destroy
-      budget = current_budget.budget.friendly.find(params[:budget_id])
-      @transaction = budget.transactions.where(id: params[:id]).first
+      @transaction = current_account.transactions.find(id: params[:id])
+
       if @transaction.destroy
         head(:ok)
       else
@@ -30,8 +42,12 @@ module V1
     private
 
     def current_budget
-      @budget ||= Budget.friendly.find(params[:budget_id])
-      @budget
+      @current_budget ||= Budget.friendly.find(params[:budget_id])
+    end
+
+    def current_account
+      @current_account ||=
+        current_budget.accounts.friendly.find(params[:account_id])
     end
 
     def transaction_params
