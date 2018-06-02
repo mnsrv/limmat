@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :v1, defaults: { format: :json } do
-    resources :transactions
+    resources :budgets, only: [:create, :update] do
+      resources :transactions, only: [:index]
+    end
     resource :sessions, only: [:show, :create, :destroy]
     resources :users, only: [:create]
   end
