@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Budget model
 class Budget < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged

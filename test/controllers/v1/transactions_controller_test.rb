@@ -17,5 +17,36 @@ module V1
       assert_response :success
       assert_not_includes transaction_ids, not_usd_budget_transaction.id
     end
+
+    test 'should create transaction under the correct account' do
+      budget = budgets(:usd_budget)
+      account = budget.accounts.first
+
+      date = Faker::Date.backward(14)
+      amount = Faker::Number.decimal(2)
+      memo = Faker::Company.name
+
+      post(
+        v1_account_transactions_path(
+          budget_id: budget.id,
+          account_id: account.id
+        ),
+        params: {
+          transaction: {
+            date: date,
+            amount: amount,
+            memo: memo
+          }
+        }
+      )
+
+      transaction = JSON.parse(@response.body)['data']['transaction']
+
+      assert_response :success
+
+      assert_equal date.strftime, transaction['date']
+      assert_equal amount.to_f, transaction['amount']
+      assert_equal memo, transaction['memo']
+    end
   end
 end

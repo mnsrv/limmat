@@ -8,3 +8,4 @@ two:
   name: <%= Faker::Company.name %>
   slug: 'another-one'
   owner: two
+  currency: 'RUB'
