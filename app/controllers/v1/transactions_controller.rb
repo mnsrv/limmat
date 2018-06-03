@@ -10,20 +10,20 @@ module V1
     end
 
     def create
-      @transaction = current_account.transactions.build(transaction_params)
+      transaction = current_account.transactions.build(transaction_params)
 
-      if @transaction.save
-        render :create, status: :created
+      if transaction.save
+        render :create, status: :created, locals: { transaction: transaction }
       else
         head(:unprocessable_entity)
       end
     end
 
     def update
-      @transaction = current_account.transactions.find(params[:id])
+      transaction = current_account.transactions.find(params[:id])
 
-      if @transaction.update(transaction_params)
-        render :update
+      if transaction.update(transaction_params)
+        render :update, locals: { transaction: transaction }
       else
         head(:unprocessable_entity)
       end

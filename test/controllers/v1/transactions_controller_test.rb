@@ -48,5 +48,34 @@ module V1
       assert_equal amount.to_f, transaction['amount']
       assert_equal memo, transaction['memo']
     end
+
+    test 'should update transaction' do
+      budget = budgets(:usd_budget)
+      account = budget.accounts.first
+      transaction = account.transactions.first
+
+      amount = Faker::Number.decimal(3)
+
+      patch(
+        v1_account_transaction_path(
+          budget_id: budget.id,
+          account_id: account.id,
+          id: transaction.id
+        ),
+        params: {
+          transaction: {
+            amount: amount
+          }
+        }
+      )
+
+      response_transaction = JSON.parse(@response.body)['data']['transaction']
+
+      assert_response :success
+
+      assert_equal amount.to_f, response_transaction['amount']
+      assert_equal transaction['memo'], response_transaction['memo']
+      assert_equal transaction['date'].strftime, response_transaction['date']
+    end
   end
 end
