@@ -13,6 +13,18 @@ module V1
       }
     end
 
+    test 'access user budgets' do
+      not_user_one_budget = budgets(:two)
+      get v1_budgets_path, headers: @header
+
+      accounts = JSON.parse(@response.body)['data']
+
+      budget_ids = accounts.map { |account| account['id'] }
+
+      assert_response :success
+      assert_not_includes budget_ids, not_user_one_budget.id
+    end
+
     test 'create budget for user' do
       budget_params = {
         name: Faker::Company.name,

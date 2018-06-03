@@ -3,6 +3,12 @@
 module V1
   # Manages the Budget model
   class BudgetsController < ApplicationController
+    def index
+      budgets = current_user.budgets
+
+      render :index, locals: { budgets: budgets }
+    end
+
     def create
       budget = current_user.budgets.build(budget_params)
 
