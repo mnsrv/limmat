@@ -43,5 +43,22 @@ module V1
 
       assert budget['name'] == budget_params[:name]
     end
+
+    test 'get budget by id' do
+      user_one_budget = budgets(:usd_budget)
+
+      get(
+        v1_budget_path(
+          id: user_one_budget.id
+        ),
+        headers: @header
+      )
+
+      budget = JSON.parse(@response.body)['data']['budget']
+
+      assert_response :success
+
+      assert_equal budget['id'], user_one_budget.id
+    end
   end
 end

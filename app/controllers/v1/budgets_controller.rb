@@ -19,6 +19,16 @@ module V1
       end
     end
 
+    def show
+      budget = current_user.budgets.friendly.find(params[:id])
+
+      if budget
+        render :show, status: :ok, locals: { budget: budget }
+      else
+        head(:unprocessable_entity)
+      end
+    end
+
     def update
       @budget = current_user.budgets.friendly.find(params[:id])
 
