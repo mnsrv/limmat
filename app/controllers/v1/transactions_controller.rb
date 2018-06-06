@@ -41,10 +41,6 @@ module V1
 
     private
 
-    def current_budget
-      @current_budget ||= Budget.friendly.find(params[:budget_id])
-    end
-
     def current_account
       @current_account ||=
         current_budget.accounts.friendly.find(params[:account_id])
