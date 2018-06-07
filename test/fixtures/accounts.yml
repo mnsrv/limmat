@@ -1,7 +1,11 @@
 one:
   name: <%= Faker::Company.name %>
+  on_budget: true
+  balance: 0.0
   budget: usd_budget
 
 two:
   name: <%= Faker::Company.name %>
+  on_budget: true
+  balance: 0.0
   budget: rub_budget

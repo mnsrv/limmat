@@ -14,6 +14,21 @@ module V1
       }
     end
 
+    test 'list out accounts for @budget' do
+      account_one = accounts(:one)
+      account_two = accounts(:two)
+
+      get v1_accounts_path(@budget)
+
+      account_ids = JSON.parse(@response.body)['data'].map do |acc|
+        acc['id']
+      end
+
+      assert_response :success
+      assert_includes account_ids, account_one.id
+      assert_not_includes account_ids, account_two.id
+    end
+
     test 'create account for user' do
       account_params = {
         name: Faker::Company.name,
