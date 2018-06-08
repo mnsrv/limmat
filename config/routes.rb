@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :transactions, only: %i[index]
 
       resources :accounts, only: %i[index create update] do
-        resources :transactions, only: %i[create update destroy]
+        resources :transactions, only: %i[index create update destroy]
       end
     end
 

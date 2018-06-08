@@ -7,7 +7,7 @@ module V1
     test 'should get only transactions for usd_budget' do
       budget = budgets(:usd_budget)
 
-      not_usd_budget_transaction = budgets(:two)
+      not_usd_budget_transaction = transactions(:two)
 
       get v1_transactions_path(budget_id: budget.id)
 
@@ -16,6 +16,29 @@ module V1
 
       assert_response :success
       assert_not_includes transaction_ids, not_usd_budget_transaction.id
+    end
+
+    test 'should get only transactions for first account' do
+      budget = budgets(:usd_budget)
+      account = accounts(:one)
+
+      first_account_transaction = transactions(:one)
+      not_first_account_transaction = transactions(:two)
+
+      get(
+        v1_account_transactions_path(
+          budget_id: budget.id,
+          account_id: account.id
+        )
+      )
+
+      transactions = JSON.parse(@response.body)['data']
+      transaction_ids = transactions.map { |transaction| transaction['id'] }
+
+      assert_response :success
+
+      assert_includes transaction_ids, first_account_transaction.id
+      assert_not_includes transaction_ids, not_first_account_transaction.id
     end
 
     test 'should create transaction under the correct account' do
