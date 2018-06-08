@@ -48,5 +48,21 @@ module V1
 
       assert account['name'] == account_params[:name]
     end
+
+    test 'should return unprocessable entity' do
+      account_params = {
+        name: Faker::Company.name,
+        on_budget: '',
+        balance: ''
+      }
+
+      post(
+        v1_accounts_path(@budget),
+        headers: @header,
+        params: { account: account_params }
+      )
+
+      assert_response :unprocessable_entity
+    end
   end
 end
