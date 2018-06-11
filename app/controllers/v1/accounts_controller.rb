@@ -20,6 +20,16 @@ module V1
       end
     end
 
+    def show
+      account = current_budget.accounts.friendly.find(params[:id])
+
+      if account
+        render :show, status: :ok, locals: { account: account }
+      else
+        head(:unprocessable_entity)
+      end
+    end
+
     private
 
     def account_params

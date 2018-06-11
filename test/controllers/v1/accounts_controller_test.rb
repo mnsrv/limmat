@@ -64,5 +64,24 @@ module V1
 
       assert_response :unprocessable_entity
     end
+
+    test 'get account by id' do
+      user_one_budget = budgets(:usd_budget)
+      user_one_account = accounts(:one)
+
+      get(
+        v1_account_path(
+          budget_id: user_one_budget.id,
+          id: user_one_account.id
+        ),
+        headers: @header
+      )
+
+      account = JSON.parse(@response.body)['data']['account']
+
+      assert_response :success
+
+      assert_equal account['id'], user_one_account.id
+    end
   end
 end

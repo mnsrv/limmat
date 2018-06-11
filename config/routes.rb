@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     scope ':budget_id' do
       resources :transactions, only: %i[index]
 
-      resources :accounts, only: %i[index create update] do
+      resources :accounts, only: %i[index create show update] do
         resources :transactions, only: %i[index create update destroy]
       end
     end
