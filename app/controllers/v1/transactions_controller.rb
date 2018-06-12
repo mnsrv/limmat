@@ -4,7 +4,7 @@ module V1
   # Transaction endpoints
   class TransactionsController < ApplicationController
     def index
-      @transactions = current_budget.transactions
+      @transactions = current_scope.transactions
 
       render :index, status: :ok
     end
@@ -40,6 +40,10 @@ module V1
     end
 
     private
+
+    def current_scope
+      params[:account_id].present? ? current_account : current_budget
+    end
 
     def current_account
       @current_account ||=
