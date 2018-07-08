@@ -4,7 +4,7 @@ module V1
   # Transaction endpoints
   class TransactionsController < ApplicationController
     def index
-      @transactions = current_scope.transactions
+      @transactions = current_scope.transactions.order(date: :desc)
 
       render :index, status: :ok
     end
