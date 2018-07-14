@@ -3,5 +3,6 @@ json.call(
   :id,
   :date,
   :amount,
-  :memo
+  :memo,
+  :account_id
 )

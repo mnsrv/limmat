@@ -51,7 +51,7 @@ module V1
     end
 
     def transaction_params
-      params.require(:transaction).permit(:date, :amount, :memo)
+      params.require(:transaction).permit(:date, :amount, :memo, :account_id)
     end
   end
 end
