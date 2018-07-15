@@ -114,10 +114,13 @@ module V1
         )
       )
 
+      response_transaction = JSON.parse(@response.body)['data']['transaction']
+
       account_transactions_ids = account.transactions.map{ |account_transaction| account_transaction['id'] }
 
       assert_response :success
       assert_not_includes account_transactions_ids, transaction.id
+      assert_equal transaction.id, response_transaction['id']
     end
   end
 end

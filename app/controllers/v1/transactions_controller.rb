@@ -30,10 +30,10 @@ module V1
     end
 
     def destroy
-      @transaction = current_account.transactions.find(params[:id])
+      transaction = current_account.transactions.find(params[:id])
 
-      if @transaction.destroy
-        head(:ok)
+      if transaction.destroy
+        render :delete, status: :ok, locals: { transaction: transaction }
       else
         head(:unprocessable_entity)
       end
