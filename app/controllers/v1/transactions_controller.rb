@@ -30,7 +30,7 @@ module V1
     end
 
     def destroy
-      @transaction = current_account.transactions.find(id: params[:id])
+      @transaction = current_account.transactions.find(params[:id])
 
       if @transaction.destroy
         head(:ok)

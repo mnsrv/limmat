@@ -100,5 +100,24 @@ module V1
       assert_equal transaction['memo'], response_transaction['memo']
       assert_equal transaction['date'].strftime, response_transaction['date']
     end
+
+    test 'should DELETE transaction' do
+      budget = budgets(:usd_budget)
+      account = budget.accounts.first
+      transaction = account.transactions.first
+
+      delete(
+        v1_account_transaction_path(
+          budget_id: budget.id,
+          account_id: account.id,
+          id: transaction.id
+        )
+      )
+
+      account_transactions_ids = account.transactions.map{ |account_transaction| account_transaction['id'] }
+
+      assert_response :success
+      assert_not_includes account_transactions_ids, transaction.id
+    end
   end
 end
