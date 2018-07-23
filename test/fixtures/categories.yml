@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category_group: one
+  name: MyString
+  emoji: MyString
+
+two:
+  category_group: two
+  name: MyString
+  emoji: MyString

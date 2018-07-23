@@ -7,6 +7,7 @@ class Budget < ApplicationRecord
 
   has_many :accounts
   has_many :transactions, through: :accounts
+  has_many :category_groups
 
   belongs_to :owner, class_name: 'User'
 end
