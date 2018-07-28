@@ -2,10 +2,10 @@
 
 one:
   category_group: one
-  name: MyString
+  name: <%= Faker::Company.name %>
   emoji: MyString
 
 two:
   category_group: two
-  name: MyString
+  name: <%= Faker::Company.name %>
   emoji: MyString

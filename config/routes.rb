@@ -10,7 +10,9 @@ Rails.application.routes.draw do
         resources :transactions, only: %i[index create update destroy]
       end
 
-      resources :category_groups, only: %i[create]
+      resources :category_groups, only: %i[create] do
+        resources :categories, only: %i[create]
+      end
     end
 
     resources :budgets, only: %i[index create show update]
